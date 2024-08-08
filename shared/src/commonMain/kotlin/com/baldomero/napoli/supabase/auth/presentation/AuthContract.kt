@@ -4,8 +4,8 @@ import com.baldomero.napoli.common.randomUUID
 import com.baldomero.napoli.eventplanner.core.presentation.effect.BaseUiIntent
 import com.baldomero.napoli.eventplanner.core.presentation.intent.BaseEffect
 import com.baldomero.napoli.eventplanner.core.presentation.models.FeedbackUI
+import com.baldomero.napoli.eventplanner.core.presentation.models.UserUI
 import com.baldomero.napoli.eventplanner.core.presentation.state.BaseUiState
-import com.baldomero.napoli.supabase.auth.presentation.models.UserUI
 import io.ktor.utils.io.core.toByteArray
 import okio.ByteString
 

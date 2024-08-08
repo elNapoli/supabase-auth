@@ -1,11 +1,10 @@
 package com.baldomero.napoli.supabase.auth.data.repositories
 
-import com.baldomero.napoli.eventplanner.core.PreferencesManager
 import com.baldomero.napoli.eventplanner.core.data.utils.NetworkResult
+import com.baldomero.napoli.eventplanner.core.domain.models.User
 import com.baldomero.napoli.eventplanner.core.utils.toMyError
-import com.baldomero.napoli.supabase.auth.data.models.toInstance
-import com.baldomero.napoli.supabase.auth.domain.models.User
 import com.baldomero.napoli.supabase.auth.domain.repository.AuthRepository
+import com.baldomero.napoli.supabase.auth.utils.toInstance
 import com.baldomero.napoli.supabase.network.NetworkModule
 import com.rickclephas.kmp.nativecoroutines.NativeCoroutines
 import io.github.jan.supabase.gotrue.auth
