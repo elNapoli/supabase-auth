@@ -1,0 +1,27 @@
+[versions]
+agp = "8.5.1"
+kotlin = "2.0.0"
+baldomeroNapoliCore = "1.0.1"
+baldomeroNapoliNetwork = "1.0.0"
+koin = "3.5.3"
+baldomeroNapoliCommon= "1.0.0"
+ktorUtils = "2.3.12"
+nativecoroutines = "1.0.0-ALPHA-31"
+okio = "3.9.0"
+
+[libraries]
+kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
+baldomero-napoli-core = { module = "com.baldomero.napoli.eventplanner:core", version.ref = "baldomeroNapoliCore" }
+baldomero-napoli-common = { module = "com.baldomero.napoli:common", version.ref = "baldomeroNapoliCommon" }
+baldomero-napoli-network = { module = "com.baldomero.napoli.supabase:network", version.ref = "baldomeroNapoliNetwork" }
+kmp-koin-core = { group = "io.insert-koin", name = "koin-core", version.ref = "koin" }
+ktor-utils = { module = "io.ktor:ktor-utils", version.ref = "ktorUtils" }
+okio = { module = "com.squareup.okio:okio", version.ref = "okio" }
+kmp-koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "koin" }
+
+[plugins]
+androidLibrary = { id = "com.android.library", version.ref = "agp" }
+nativecoroutines = { id = "com.rickclephas.kmp.nativecoroutines", version.ref = "nativecoroutines" }
+kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+
