@@ -11,14 +11,16 @@ import com.baldomero.napoli.supabase.auth.domain.usecases.SignInWithEmailAndPass
 import com.baldomero.napoli.supabase.auth.presentation.AuthContract.Effect
 import com.baldomero.napoli.supabase.auth.presentation.AuthContract.UiIntent
 import com.baldomero.napoli.supabase.auth.presentation.AuthContract.UiState
+import com.baldomero.napoli.supabase.auth.utils.RouteProvider
 
 open class AuthViewModel(
     private val createUseWithEmailAndPasswordUseCase: CreateUseWithEmailAndPasswordUseCase,
     private val signInWithEmailAndPasswordUseCase: SignInWithEmailAndPasswordUseCase,
+    private val routeProvider: RouteProvider,
     private val loginWithGoogleUseCase: LoginWithGoogleUseCase,
     private val checkIsLoggedUserUseCase: CheckIsLoggedUserUseCase,
 ) : BaseViewModel<UiState, UiIntent, Effect>(
-    UiState()
+    UiState(initialRoute = routeProvider.getRouteForLoggedOutUser())
 ) {
 
     override fun sendIntent(uiIntent: UiIntent) {
@@ -41,6 +43,7 @@ open class AuthViewModel(
             UiIntent.CreateUseWithEmailAndPassword -> createUseWithEmailAndPassword()
             UiIntent.SignInWithEmailAndPassword -> signInWithEmailAndPassword()
             UiIntent.ResetFeedbackUI -> updateUiState { copy(feedbackUI = null) }
+            UiIntent.GetInitialRoute -> checkIsLoggedUser()
             is UiIntent.LoginWithGoogle -> loginWithGoogle(uiIntent.token)
         }
     }
@@ -163,13 +166,12 @@ open class AuthViewModel(
 
         },
         onSuccess = { data ->
-            data?.let { user ->
-                updateUiState {
-                    copy(
-                        user = user.mapToUI()
-                    )
-                }
-                sendEffect(Effect.GoToHome)
+            if(data != null){
+               updateUiState { copy(initialRoute =  routeProvider.getRouteForLoggedInUser()) }
+            }
+            else{
+                updateUiState { copy(initialRoute =  routeProvider.getRouteForLoggedOutUser()) }
+
             }
         },
         useCase = {

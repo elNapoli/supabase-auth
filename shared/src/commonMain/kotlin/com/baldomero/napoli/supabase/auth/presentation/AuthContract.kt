@@ -11,26 +11,16 @@ import okio.ByteString
 
 interface AuthContract {
     data class UiState(
-        var passwordVisible: Boolean,
-        var email: String,
-        var user: UserUI?,
-        var password: String,
-        var repeatPassword: String,
-        var loading: Boolean,
-        val nonce: String,
-        var feedbackUI: FeedbackUI?
+        var passwordVisible: Boolean = false,
+        var email: String = "",
+        var user: UserUI? = null,
+        var password: String = "",
+        var initialRoute: String,
+        var repeatPassword: String = "",
+        var loading: Boolean = false,
+        val nonce: String = randomUUID,
+        var feedbackUI: FeedbackUI? = null
     ) : BaseUiState() {
-        // NOTE: de debe instanciar el constructor de esta forma para KMM
-        constructor() : this(
-            passwordVisible = false,
-            email = "",
-            user = null,
-            password = "",
-            nonce = randomUUID,
-            repeatPassword = "",
-            loading = false,
-            feedbackUI = null
-        )
 
         fun loading(value: Boolean): UiState = copy(loading = value)
         fun saveEmail(email: String): UiState = copy(email = email)
@@ -57,6 +47,7 @@ interface AuthContract {
     sealed interface UiIntent : BaseUiIntent {
         data object ToggleVisualTransformation : UiIntent
         data object ResetFeedbackUI : UiIntent
+        data object GetInitialRoute : UiIntent
         data class SaveEmail(val email: String) : UiIntent
         data class SavePassword(val password: String) : UiIntent
         data class SaveRepeatPassword(val repeatPassword: String) : UiIntent

@@ -40,7 +40,7 @@ kotlin {
         }
         androidMain.dependencies {
             implementation(libs.kmp.koin.android)
-
+            implementation(libs.ktor.client.okhttp)
         }
         commonMain.dependencies {
             implementation(libs.baldomero.napoli.core)
@@ -50,7 +50,10 @@ kotlin {
             implementation(libs.kmp.koin.core)
             implementation(libs.okio)
             implementation(libs.ktor.utils)
+            implementation(libs.ktor.client.core)
 
+            implementation(project.dependencies.platform("io.github.jan-tennert.supabase:bom:2.5.4"))
+            implementation(libs.gotrue.kt)
 
         }
         commonTest.dependencies {

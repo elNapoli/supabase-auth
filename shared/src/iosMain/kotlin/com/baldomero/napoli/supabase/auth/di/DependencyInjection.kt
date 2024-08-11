@@ -7,7 +7,7 @@ import org.koin.dsl.module
 
 
 actual fun platformModule() = module {
-    factory { AuthViewModel(get(), get(), get(), get()) }
+    factory { AuthViewModel(get(), get(), get(),get(), get()) }
 }
 
 @Suppress("unused")
